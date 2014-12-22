@@ -8,7 +8,7 @@ import (
 	"appengine"
 	"appengine/urlfetch"
 	"errors"
-	"github.com/mlmasterson/napping"
+	"github.com/timequotient/napping"
 	"log"
 	"net/http"
 	"net/url"
