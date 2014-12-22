@@ -5,7 +5,7 @@
 package neoism
 
 import (
-	"github.com/kr/pretty"
+	// mlm "github.com/kr/pretty"
 	"runtime"
 	"strconv"
 	"strings"
@@ -25,9 +25,12 @@ func join(fragments ...string) string {
 	return strings.Join(parts, "/")
 }
 
+/* mlm
 func logPretty(x interface{}) {
+
 	_, file, line, _ := runtime.Caller(1)
 	lineNo := strconv.Itoa(line)
 	s := file + ":" + lineNo + ": %# v\n"
 	pretty.Logf(s, x)
 }
+*/

@@ -5,8 +5,10 @@
 package neoism
 
 import (
+	"appengine"
+	"appengine/urlfetch"
 	"errors"
-	"github.com/jmcvetta/napping"
+	"github.com/mlmasterson/napping"
 	"log"
 	"net/http"
 	"net/url"
@@ -32,12 +34,14 @@ type Database struct {
 
 // Connect setups parameters for the Neo4j server
 // and calls ConnectWithRetry()
-func Connect(uri string) (*Database, error) {
+func Connect(r *http.Request, uri string) (*Database, error) {
+	c := appengine.NewContext(r)
 	h := http.Header{}
 	h.Add("User-Agent", "neoism")
 	db := &Database{
 		Session: &napping.Session{
 			Header: &h,
+			Client: urlfetch.Client(c),
 		},
 	}
 	parsedUrl, err := url.Parse(uri)

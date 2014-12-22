@@ -4,6 +4,7 @@
 
 package main
 
+/*
 import (
 	"fmt"
 	"github.com/jmcvetta/neoism"
@@ -100,3 +101,4 @@ func cleanup(db *neoism.Database) {
 		log.Fatal(err)
 	}
 }
+*/

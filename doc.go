@@ -99,7 +99,7 @@ Example Usage:
 package neoism
 
 // Imports required for tests - so they work with "go get".
-import (
-	_ "github.com/bmizerany/assert"
-	_ "github.com/jmcvetta/randutil"
-)
+// mlm import (
+// mlm 	_ "github.com/bmizerany/assert"
+// mlm	_ "github.com/jmcvetta/randutil"
+// mlm)

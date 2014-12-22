@@ -43,7 +43,7 @@ func (cq *CypherQuery) Unmarshal(v interface{}) error {
 	}
 	b, err := json.Marshal(rs)
 	if err != nil {
-		logPretty(err)
+		// mlm logPretty(err)
 		return err
 	}
 	return json.Unmarshal(b, v)
