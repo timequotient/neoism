@@ -8,11 +8,11 @@ import (
 	"appengine"
 	"appengine/urlfetch"
 	"errors"
-	"github.com/timequotient/napping"
 	"log"
-	"net/http"
 	"net/url"
 	"strconv"
+
+	"gopkg.in/jmcvetta/napping.v3"
 )
 
 // A Database is a REST client connected to a Neo4j database.
@@ -30,28 +30,6 @@ type Database struct {
 	HrefTransaction string      `json:"transaction"`
 	Version         string      `json:"neo4j_version"`
 	Extensions      interface{} `json:"extensions"`
-}
-
-// Connect setups parameters for the Neo4j server
-// and calls ConnectWithRetry()
-func Connect(r *http.Request, uri string) (*Database, error) {
-	c := appengine.NewContext(r)
-	h := http.Header{}
-	h.Add("User-Agent", "neoism")
-	db := &Database{
-		Session: &napping.Session{
-			Header: &h,
-			Client: urlfetch.Client(c),
-		},
-	}
-	parsedUrl, err := url.Parse(uri)
-	if err != nil {
-		return nil, err
-	}
-	if parsedUrl.User != nil {
-		db.Session.Userinfo = parsedUrl.User
-	}
-	return connectWithRetry(db, parsedUrl, 0)
 }
 
 // connectWithRetry tries to establish a connection to the Neo4j server.
@@ -89,7 +67,7 @@ func PropertyKeys(db *Database) ([]string, error) {
 	propertyKeys := []string{}
 	ne := NeoError{}
 
-	uri := db.Url + "/" + "propertykeys"
+	uri := db.Url + "propertykeys"
 	resp, err := db.Session.Get(uri, nil, &propertyKeys, &ne)
 	if err != nil {
 		return propertyKeys, err
