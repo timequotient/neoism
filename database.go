@@ -5,14 +5,12 @@
 package neoism
 
 import (
-	"appengine"
-	"appengine/urlfetch"
 	"errors"
 	"log"
 	"net/url"
 	"strconv"
 
-	"gopkg.in/jmcvetta/napping.v3"
+	"github.com/timequotient/napping"
 )
 
 // A Database is a REST client connected to a Neo4j database.

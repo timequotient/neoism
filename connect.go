@@ -11,7 +11,7 @@ import (
 	"net/url"
 	"strings"
 
-	"gopkg.in/jmcvetta/napping.v3"
+	"github.com/timequotient/napping"
 )
 
 // Connect setups parameters for the Neo4j server
