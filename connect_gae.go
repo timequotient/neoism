@@ -34,6 +34,7 @@ func Connect(uri string, gaeContext appengine.Context) (*Database, error) {
 	}
 	if parsedUrl.User != nil {
 		db.Session.Userinfo = parsedUrl.User
+		parsedUrl.User = nil
 	}
 	return connectWithRetry(db, parsedUrl, 0)
 }
